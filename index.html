@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+       <h3>Q1. What is an event loop and call stack</h3>
+       <p>A call stack is a mechanism for an interpreter (like the JavaScript interpreter in a web browser)
+        to keep track of its place in a script that calls multiple functions — what function is currently
+        being run and what functions are called from within that function, etc. or we can say that it
+        stores global execution context and function execution context.
+        </p>
+        
+        <p>The event loop is a constantly running process that monitors both the callback queue and the
+            call stack. All the web apis functions like setTimeout, setInterval, fetch calls etc. will not be
+            directly executed inside the execution context, firstly they will be moved to callback queue and
+            then the moment call stack gets empty these functions will be pushed to call stack from
+            callback queue by event loop. If the call stack is not empty, the event loop waits until it is empty and places the next function
+            from the callback queue to the call stack. If the callback queue is empty, nothing will happen</p>
+       <h3>Q2. What is creation phase and execution phase?</h3>
+       <p>Creation Phase 
+         In the first run, It picks all function declarations and stores them in memory with
+        their reference.
+        In the second run, It picks all variables and assign undefined to them. In the event of
+        a conflict between variable and function declaration name then that variable is
+        ignored.
+        </p>
+        
+        <p>Execution Phase 
+             Variables assigned with values given in code at the time of initialization.
+             Functions executed
+            </p>
+       <h3>Q3. What is the spread operator?</h3>
+       <p>Ans:- In JS spread opreatores(...) is allows us to destructure the non-primitive data types like Arrays and Objects to access the elements individually.</p>
+       <pre>
+        const Obj1 = {
+            name : "Tokyo",
+            age : 25
+        }
+        
+        const Obj2 = {
+            Course : "MERN",
+            ...Obj1
+        }
+        
+        console.log(Obj1);
+        console.log(Obj2);</pre>
+
+        <h3>Q4. What is the use of setTimeout</h3>
+        <p>Ans:- The setTimeout() method sets a timer which executes a function or specified piece of code once the timer expires.
+        </p>
+        <pre>function Display(){
+            let time = new Date();
+          let hr = time.toLocaleTimeString();
+          console.log(hr);
+    
+          setTimeout(()=>{
+            Display();
+          },1000)
+    }
+    Display();</pre>
+
+    <h3>Q5. What are callbacks?</h3>
+    <p>Ans:- A callback is a function that passed as an argument to another function.
+    </p>
+    <pre>function greet (name, callback){
+        console.log(`Hii ${name}`);
+        callback();
+    }
+    function callMe(){
+        console.log(" I am a callback function");
+    }
+    
+    greet('peter',callMe) </pre>
+
+    <h3>Q6. What is callback hell</h3>
+    <p> Callback Hell is essentially nested callbacks stacked below one another forming a pyramid structure.</p>
+    <pre>
+        function demo(callback){
+            console.log("step 1");
+            callback();
+        }
+        function demo2(callback){
+            console.log("step 2");
+            callback();
+        }
+        function demo3(callback){
+            console.log("step 3");
+            callback();
+        }
+        function demo4(callback){
+            console.log("step 4");
+            callback();
+        }
+        function demo5(){
+            console.log("step 5");
+        }
+        
+        demo(function(){
+            demo2(function(){
+                demo3(function(){
+                    demo4(function(){
+                        demo5();
+                    })
+                })
+            })
+        })</pre>
+
+    <h3>Q7. Difference between undefined vs not defined vs NaN</h3>
+    <pre>
+        1. undefine - variable dec. but not init.
+        2. not define - variable is not declear.
+        3. NaN - Not a Number
+    </pre>
+</body>
+       <script src="./script.js"></script>
+</html>
